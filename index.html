@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Palm Springs by Nakheel | Dubai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --peach: #f3c89a;
+      --peach-deep: #e7b483;
+      --ink: #141414;
+      --text: #2a2a2a;
+      --muted: #6d675f;
+      --line: #ece7e1;
+      --white: #ffffff;
+      --card: 28px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Manrope, sans-serif;
+      color: var(--text);
+      background: var(--peach);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font-family: inherit; }
+    .serif { font-family: Manrope, sans-serif; }
+
+    /* ---------- HERO BAND ---------- */
+    .hero-band { padding: 18px 18px 22px; }
+    .hero {
+      position: relative;
+      height: min(86vh, 820px);
+      min-height: 620px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #1c1c1c;
+      box-shadow: 0 18px 50px rgba(90, 50, 10, 0.18);
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+    }
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,.05) 28%, rgba(0,0,0,.08) 58%, rgba(0,0,0,.45) 100%),
+        linear-gradient(90deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 42%);
+    }
+
+    .nav {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      min-width: 160px;
+    }
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.75);
+      display: grid;
+      place-items: center;
+    }
+    .logo-mark svg { width: 18px; height: 18px; }
+    .logo-name {
+      font-family: Manrope, sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: .02em;
+      line-height: 1;
+    }
+    .logo-sub {
+      display: block;
+      margin-top: 3px;
+      font-size: .62rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      opacity: .85;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(16px);
+    }
+    .nav-links a {
+      color: #fff;
+      font-size: .82rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 999px;
+      transition: background .25s, color .25s;
+    }
+    .nav-links a.active,
+    .nav-links a:hover { background: #fff; color: var(--ink); }
+    .nav-tools { display: flex; align-items: center; gap: 8px; }
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: background .25s, transform .25s;
+    }
+    .icon-btn:hover { background: rgba(255,255,255,.28); transform: translateY(-1px); }
+    .icon-btn svg { width: 16px; height: 16px; }
+    .menu-btn { display: none; }
+
+    .hero-copy {
+      position: absolute;
+      z-index: 2;
+      left: 48px;
+      right: 430px;
+      top: 28%;
+    }
+    .kicker {
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      line-height: 1.55;
+      margin-bottom: 18px;
+      max-width: 280px;
+    }
+    .wordmark {
+      font-family: Manrope, sans-serif;
+      font-weight: 500;
+      font-size: clamp(64px, 9.4vw, 132px);
+      color: #fff;
+      letter-spacing: .045em;
+      line-height: .86;
+      text-transform: uppercase;
+      text-shadow: 0 10px 40px rgba(0,0,0,.25);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 470px;
+      margin-top: 24px;
+    }
+    .stat {
+      background: rgba(20, 20, 20, .42);
+      border: 1px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(14px);
+      color: #fff;
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+    .stat strong {
+      display: block;
+      font-family: Manrope, sans-serif;
+      font-size: 1.7rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      line-height: 1;
+    }
+    .stat span {
+      display: block;
+      margin-top: 4px;
+      font-size: .68rem;
+      line-height: 1.35;
+      opacity: .88;
+    }
+
+    .hero-lead {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      right: 46px;
+      transform: translateY(-44%);
+      width: 360px;
+      padding: 25px;
+      border: 1px solid rgba(255,255,255,.62);
+      border-radius: 24px;
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 24px 70px rgba(0,0,0,.3);
+      backdrop-filter: blur(18px);
+    }
+    .hero-lead-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #80613d;
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .hero-lead-tag::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #8c9a70;
+      box-shadow: 0 0 0 4px rgba(140,154,112,.15);
+    }
+    .hero-lead h2 {
+      margin-top: 10px;
+      font-family: Manrope, sans-serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .hero-lead-intro {
+      margin: 7px 0 17px;
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.5;
+    }
+    .hero-field { margin-top: 9px; }
+    .hero-field input,
+    .hero-field select {
+      width: 100%;
+      height: 44px;
+      padding: 0 13px;
+      border: 1px solid #e8e2d9;
+      border-radius: 12px;
+      outline: none;
+      background: #fbfaf8;
+      color: var(--text);
+      font-size: .82rem;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+    .hero-field input:focus,
+    .hero-field select:focus {
+      border-color: #b89a73;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(184,154,115,.14);
+    }
+    .hero-lead-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      min-height: 48px;
+      margin-top: 13px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: .82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .hero-lead-submit:hover {
+      transform: translateY(-2px);
+      background: #4a3c2d;
+      box-shadow: 0 10px 22px rgba(20,20,20,.18);
+    }
+    .hero-lead-submit svg { width: 15px; height: 15px; }
+    .hero-lead-note {
+      min-height: 1em;
+      margin-top: 10px;
+      color: #47734c;
+      text-align: center;
+      font-size: .72rem;
+      line-height: 1.4;
+    }
+    .hero-lead-privacy {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin-top: 3px;
+      color: #888078;
+      font-size: .68rem;
+    }
+    .hero-lead-privacy svg { width: 12px; height: 12px; }
+
+    .discover {
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #111;
+      color: #fff;
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 8px 8px 20px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,.28);
+    }
+    .discover i {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #fff;
+      color: #111;
+      display: grid;
+      place-items: center;
+    }
+    .discover:hover i { background: var(--peach); }
+
+    /* ---------- EXCELLENCE ---------- */
+    .sheet { background: #fff; }
+    .excellence { padding: 88px 40px 40px; max-width: 1180px; margin: 0 auto; }
+    .section-title {
+      text-align: center;
+      font-family: Manrope, sans-serif;
+      font-weight: 500;
+      font-size: clamp(2.2rem, 4vw, 3.3rem);
+      line-height: 1.12;
+      color: #1a1a1a;
+      letter-spacing: -.01em;
+      margin-bottom: 54px;
+    }
+    .ex-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .ex-copy h3 {
+      font-family: Manrope, sans-serif;
+      font-size: 1.65rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      color: #1c1c1c;
+    }
+    .ex-copy p, .feature p, .team-copy p, .homes-intro p {
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.7;
+    }
+    .outline-btn {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid #1c1c1c;
+      color: #1c1c1c;
+      background: #fff;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: .82rem;
+      font-weight: 650;
+      cursor: pointer;
+      transition: background .25s, color .25s;
+    }
+    .outline-btn:hover { background: #1c1c1c; color: #fff; }
+    .ex-photo {
+      border-radius: 22px;
+      overflow: hidden;
+      height: 390px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.12);
+    }
+    .ex-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .feature + .feature { margin-top: 26px; }
+    .feature h4 {
+      font-size: .98rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #1c1c1c;
+    }
+    .meta-row {
+      margin-top: 42px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: center;
+    }
+    .partner-label, .loc-label {
+      font-size: .78rem;
+      color: #8a847c;
+      margin-bottom: 10px;
+    }
+    .nakheel-lockup {
+      font-family: Manrope, sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: .18em;
+      color: #1c1c1c;
+    }
+    .nakheel-lockup small {
+      display: block;
+      margin-top: 2px;
+      font-family: Manrope, sans-serif;
+      font-size: .68rem;
+      letter-spacing: .16em;
+      color: var(--muted);
+    }
+    .times { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+    .time {
+      background: #f7f4ef;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: .75rem;
+      font-weight: 600;
+      color: #333;
+    }
+    .time b { font-family: Manrope, sans-serif; font-size: .95rem; font-weight: 600; margin-right: 4px; }
+
+    .map-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 48px 40px 72px;
+    }
+    .location-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 24px;
+    }
+    .location-eyebrow {
+      margin-bottom: 8px;
+      color: #806b50;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .location-heading h2 {
+      color: #1c1c1c;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 600;
+      line-height: 1.15;
+    }
+    .location-heading p {
+      max-width: 440px;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.7;
+    }
+    .location-panel {
+      display: grid;
+      grid-template-columns: 1.6fr .8fr;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #17211b;
+      box-shadow: 0 16px 40px rgba(25,34,27,.14);
+    }
+    .map-frame {
+      position: relative;
+      overflow: hidden;
+      background: #d7e3c8;
+      aspect-ratio: 16 / 9;
+    }
+    .map-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .land-parcel-highlight {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .land-parcel-highlight path {
+      fill: rgba(243,200,154,.3);
+      stroke: #f3c89a;
+      stroke-width: 7;
+      vector-effect: non-scaling-stroke;
+      filter: drop-shadow(0 0 5px rgba(20,20,20,.55));
+    }
+    .map-parcel-label {
+      position: absolute;
+      top: 61%;
+      left: 23%;
+      padding: 6px 9px;
+      border: 1px solid rgba(243,200,154,.85);
+      border-radius: 999px;
+      background: rgba(23,33,27,.94);
+      color: #fff;
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      pointer-events: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .map-zoom-trigger {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: grid;
+      width: 100%;
+      height: 100%;
+      place-items: center;
+      border: 0;
+      background: transparent;
+      color: #17211b;
+      cursor: zoom-in;
+    }
+    .map-zoom-trigger::before {
+      position: absolute;
+      inset: 0;
+      background: rgba(23,33,27,0);
+      content: "";
+      transition: background .2s ease;
+    }
+    .map-zoom-trigger:hover::before,
+    .map-zoom-trigger:focus-visible::before { background: rgba(23,33,27,.2); }
+    .map-zoom-trigger:focus-visible { outline: 3px solid #f3c89a; outline-offset: -5px; }
+    .map-zoom-trigger span {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.78);
+      border-radius: 50%;
+      background: rgba(255,255,255,.94);
+      box-shadow: 0 8px 24px rgba(0,0,0,.24);
+      opacity: 0;
+      transform: scale(.88);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .map-zoom-trigger:hover span,
+    .map-zoom-trigger:focus-visible span { opacity: 1; transform: scale(1); }
+    .map-zoom-trigger svg { width: 23px; height: 23px; }
+    .map-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(7,11,8,.9);
+      backdrop-filter: blur(8px);
+    }
+    .map-lightbox.open { display: flex; }
+    .map-lightbox-content {
+      position: relative;
+      width: min(94vw, 1500px);
+      max-height: 84vh;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #d7e3c8;
+      box-shadow: 0 24px 80px rgba(0,0,0,.45);
+    }
+    .map-lightbox-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .map-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 1;
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 50%;
+      background: rgba(255,255,255,.14);
+      color: #fff;
+      font: inherit;
+      font-size: 1.8rem;
+      line-height: 1;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+    .map-lightbox-close:hover { background: rgba(255,255,255,.28); }
+    .location-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 30px;
+      color: #fff;
+    }
+    .location-parcel {
+      color: #d7bd91;
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+    .location-feature {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    .location-destination {
+      margin-top: 9px;
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .location-time {
+      flex: 0 0 auto;
+      color: #fff;
+      font-size: 1.7rem;
+      font-weight: 600;
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .location-time span {
+      margin-left: 5px;
+      color: rgba(255,255,255,.62);
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+    .location-routes {
+      display: grid;
+      gap: 0;
+      margin-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.16);
+    }
+    .location-route {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.16);
+      color: rgba(255,255,255,.78);
+      font-size: .76rem;
+    }
+    .location-route strong {
+      color: #fff;
+      font-size: .75rem;
+      white-space: nowrap;
+    }
+    .location-note {
+      margin-top: 12px;
+      color: rgba(255,255,255,.55);
+      font-size: .64rem;
+      line-height: 1.45;
+    }
+
+    /* ---------- LIFESTYLE ---------- */
+    .lifestyle {
+      background: #0e0e0e;
+      color: #fff;
+      padding: 54px 40px;
+    }
+    .life-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.45fr .9fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .life-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .life-card { position: relative; }
+    .life-card img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+    .life-card figcaption {
+      margin-top: 10px;
+      font-size: .82rem;
+      font-weight: 600;
+    }
+    .life-card span {
+      display: block;
+      margin-top: 2px;
+      font-size: .72rem;
+      color: rgba(255,255,255,.62);
+      font-weight: 500;
+    }
+    .team-copy h2 {
+      font-family: Manrope, sans-serif;
+      font-weight: 500;
+      font-size: clamp(2rem, 3.4vw, 2.8rem);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .team-copy p { color: rgba(255,255,255,.72); }
+    .solid-btn {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      color: #111;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-size: .82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .solid-btn:hover { background: var(--peach); }
+
+    /* ---------- HOMES ---------- */
+    .homes { padding: 78px 0 40px; background: #fff; }
+    .homes-head {
+      max-width: 1180px;
+      margin: 0 auto 28px;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+    }
+    .homes-head h2 {
+      font-family: Manrope, sans-serif;
+      font-weight: 500;
+      font-size: clamp(2.1rem, 4vw, 3.1rem);
+      line-height: 1.08;
+      max-width: 420px;
+    }
+    .homes-intro { max-width: 360px; text-align: right; }
+    .scroller-wrap { position: relative; }
+    .scroller {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 8px 40px 20px;
+      scrollbar-width: none;
+    }
+    .scroller::-webkit-scrollbar { display: none; }
+    .home-card {
+      flex: 0 0 min(340px, 78vw);
+      scroll-snap-align: start;
+      cursor: pointer;
+    }
+    .home-visual {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      height: 230px;
+      background: #eee;
+    }
+    .home-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .home-card:hover img { transform: scale(1.04); }
+    .pin, .heart {
+      position: absolute;
+      top: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(255,255,255,.92);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .pin { left: 12px; }
+    .heart { right: 12px; }
+    .heart.on svg { fill: #c4524a; stroke: #c4524a; }
+    .pin svg, .heart svg { width: 16px; height: 16px; }
+    .home-card h3 {
+      margin-top: 14px;
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+    .home-card .type {
+      margin-top: 2px;
+      font-family: Manrope, sans-serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+    }
+    .home-card .detail { margin-top: 4px; font-size: .8rem; color: var(--muted); }
+    .arrows {
+      position: absolute;
+      right: 40px;
+      top: -62px;
+      display: flex;
+      gap: 8px;
+    }
+    .arrows button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #e4e0da;
+      background: #fff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .arrows button:hover { background: #111; color: #fff; border-color: #111; }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #fff;
+      border-top: 1px solid var(--line);
+      padding: 28px 40px 34px;
+    }
+    .foot {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .foot-brand {
+      font-family: Manrope, sans-serif;
+      letter-spacing: .16em;
+      font-size: 1.15rem;
+    }
+    .foot p { font-size: .75rem; color: #8a847c; max-width: 560px; line-height: 1.5; }
+    .foot nav { display: flex; gap: 16px; font-size: .8rem; }
+    .foot nav a:hover { color: #000; }
+
+    /* ---------- SEARCH ---------- */
+    .search-pop {
+      position: absolute;
+      top: 64px;
+      right: 22px;
+      z-index: 5;
+      width: min(320px, calc(100% - 40px));
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 16px 50px rgba(0,0,0,.2);
+      display: none;
+    }
+    .search-pop.open { display: block; }
+    .search-pop input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: .88rem;
+      outline: none;
+    }
+    .search-pop input:focus { border-color: #1c1c1c; }
+
+    /* ---------- MODAL ---------- */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(12,10,8,.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal.open { display: flex; }
+    .modal-card {
+      width: min(440px, 100%);
+      background: #fff;
+      border-radius: 22px;
+      padding: 26px 26px 22px;
+      position: relative;
+    }
+    .modal-card h3 {
+      font-family: Manrope, sans-serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+    .modal-card .lead { color: var(--muted); font-size: .85rem; margin: 6px 0 16px; }
+    .field { margin-bottom: 10px; }
+    .field input, .field select {
+      width: 100%;
+      border: 1px solid #e6e1da;
+      background: #faf8f5;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: .9rem;
+      outline: none;
+    }
+    .field input:focus, .field select:focus { border-color: #1c1c1c; background: #fff; }
+    .submit {
+      width: 100%;
+      margin-top: 6px;
+      border: 0;
+      background: #111;
+      color: #fff;
+      border-radius: 999px;
+      padding: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .submit:hover { background: #2a2a2a; }
+    .close-x {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 0;
+      background: #f3f0eb;
+      cursor: pointer;
+    }
+    .form-note { text-align: center; font-size: .75rem; color: #217a3a; margin-top: 10px; min-height: 1.1em; }
+    .empty-note {
+      display: none;
+      padding: 0 40px 30px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    body.night { background: #1a1612; }
+    body.night .sheet,
+    body.night .homes,
+    body.night footer { background: #12110f; color: #f4efe8; }
+    body.night .section-title,
+    body.night .ex-copy h3,
+    body.night .feature h4,
+    body.night .homes-head h2,
+    body.night .home-card h3,
+    body.night .nakheel-lockup,
+    body.night .foot-brand { color: #f6f1ea; }
+    body.night .time { background: #2a2622; color: #f3ece3; }
+    body.night .outline-btn { border-color: #f3ece3; color: #f3ece3; background: transparent; }
+    body.night .arrows button { background: #1c1a17; color: #fff; border-color: #3a342c; }
+    body.night footer { border-top-color: #2c2823; }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 16px;
+        right: 16px;
+        padding: 10px;
+        border-radius: 18px;
+        background: rgba(20,20,20,.92);
+        align-items: stretch;
+      }
+      .menu-btn { display: grid; }
+      .hero { min-height: 0; height: auto; padding-bottom: 82px; }
+      .hero-copy { position: relative; left: auto; right: auto; top: auto; }
+      .stats { width: 100%; margin-top: 22px; }
+      .hero-stage {
+        position: relative;
+        left: auto; right: auto; bottom: auto;
+        z-index: 2;
+        padding: 52px 22px 0;
+      }
+      .hero-lead {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        width: min(440px, calc(100% - 44px));
+        margin: 28px 22px 0 auto;
+      }
+      .wordmark { font-size: clamp(52px, 14vw, 84px); }
+      .ex-grid, .life-inner { grid-template-columns: 1fr; }
+      .ex-photo { height: 280px; }
+      .life-card img { height: 240px; }
+      .homes-head { flex-direction: column; align-items: flex-start; }
+      .homes-intro { text-align: left; }
+      .arrows { top: auto; bottom: -6px; right: 16px; }
+      .meta-row { flex-direction: column; align-items: flex-start; }
+      .times { justify-content: flex-start; }
+      .excellence, .map-wrap, .lifestyle, .homes-head, footer { padding-left: 20px; padding-right: 20px; }
+      .scroller { padding-left: 20px; padding-right: 20px; }
+      .location-panel { grid-template-columns: 1.25fr .9fr; }
+      .location-details { padding: 22px; }
+    }
+    @media (max-width: 640px) {
+      .hero-band { padding: 10px; }
+      .hero { border-radius: 22px; min-height: 520px; }
+      .hero { min-height: 0; }
+      .hero-stage { padding: 48px 18px 0; }
+      .hero-lead { width: calc(100% - 36px); margin: 26px auto 0; padding: 22px; }
+      .stats { gap: 8px; margin-top: 19px; }
+      .stat { padding: 11px; border-radius: 13px; }
+      .stat strong { font-size: 1.4rem; }
+      .stat span { font-size: .64rem; }
+      .hero-lead h2 { font-size: 1.65rem; }
+      .life-cards { grid-template-columns: 1fr; }
+      .life-card img { height: 220px; }
+      .location-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
+      .location-panel { grid-template-columns: 1fr; }
+      .location-details { padding: 22px; }
+      .location-routes { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; }
+      .map-parcel-label { left: 15%; font-size: .5rem; }
+      .icon-btn.hide-sm { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-band">
+    <section class="hero" id="home">
+      <img class="hero-img" src="images/site/hero.jpg" alt="5-bedroom Rancho villas at Palm Springs, Dubai"/>
+      <div class="hero-shade"></div>
+      <nav class="nav">
+        <a class="logo" href="#home">
+           <img src="images/logo.png" alt="Palm Springs logo"/>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#location">Location</a></li>
+          
+          <li><a href="#residences">Residences</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+        <div class="nav-tools">
+          <button class="icon-btn hide-sm" id="userBtn" aria-label="Register interest" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M5 19.2c1.4-3 3.8-4.4 7-4.4s5.6 1.4 7 4.4"/></svg>
+          </button>
+          <button class="icon-btn" id="searchBtn" aria-label="Search residences" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/></svg>
+          </button>
+          <button class="icon-btn hide-sm" id="themeBtn" aria-label="Toggle theme" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 14.5A7.5 7.5 0 0 1 9.5 4 7 7 0 1 0 20 14.5z"/></svg>
+          </button>
+          <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </div>
+        <form class="search-pop" id="searchPop" role="search">
+          <input id="searchInput" type="search" placeholder="Search villas, townhouses, parks…" autocomplete="off"/>
+        </form>
+      </nav>
+
+      <div class="hero-stage">
+        <div class="hero-copy">
+          <p class="kicker">Life is richer<br/>when everything<br/>you love is closer</p>
+          <h1 class="wordmark">Palm<br/>Springs</h1>
+          <div class="stats">
+            <div class="stat">
+              <strong>23 MIN</strong>
+              <span>To Al Maktoum International Airport (DWC)</span>
+            </div>
+            <div class="stat">
+              <strong>30 MIN</strong>
+              <span>To Burj Al Arab, along Sheikh Zayed Road</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-lead" aria-labelledby="heroLeadTitle">
+        <span class="hero-lead-tag">A place to belong</span>
+        <h2 id="heroLeadTitle">Find your place<br/>at Palm Springs</h2>
+        <p class="hero-lead-intro">Be among the first to receive residence details and updates.</p>
+        <form id="heroLeadForm">
+          <div class="hero-field">
+            <input name="name" type="text" required placeholder="Full name" autocomplete="name" aria-label="Full name"/>
+          </div>
+          <div class="hero-field">
+            <input name="email" type="email" required placeholder="Email address" autocomplete="email" aria-label="Email address"/>
+          </div>
+          <div class="hero-field">
+            <input name="phone" type="tel" required placeholder="Phone number" autocomplete="tel" aria-label="Phone number"/>
+          </div>
+          <div class="hero-field">
+            <input name="nationality" type="text" required placeholder="Nationality" autocomplete="off" aria-label="Nationality"/>
+          </div>
+          <button class="hero-lead-submit" type="submit">
+            Request details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="hero-lead-note" id="heroLeadNote" aria-live="polite"></p>
+          <p class="hero-lead-privacy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            Your details stay private
+          </p>
+        </form>
+      </aside>
+
+      <button class="discover" type="button" data-open="about">
+        DISCOVER MORE
+        <i>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </i>
+      </button>
+    </section>
+  </div>
+
+  <div class="sheet">
+    <section class="excellence" id="about">
+      <h2 class="section-title">A Natural Place<br/>To Belong</h2>
+      <div class="ex-grid">
+        <div class="ex-copy">
+          <h3>Bring life together</h3>
+          <p>At Palm Springs, beautiful homes, lush green spaces and an exceptional collection of lifestyle experiences come together within one thoughtfully planned community, so the people, places and moments that matter most are always within reach.</p>
+          <button class="outline-btn" type="button" data-enquire>About the community</button>
+        </div>
+        <div class="ex-photo">
+          <img src="images/site/community.jpg" alt="Villa community pool and gardens at Palm Springs"/>
+        </div>
+        <div>
+          <article class="feature">
+            <h4>Designed to live inside and out</h4>
+            <p>Panoramic windows and sliding doors open onto private courtyards. Refined finishes and carefully planned layouts give each space a purpose, with an easy flow between indoors and out.</p>
+          </article>
+          <article class="feature">
+            <h4>One community, two ways of living</h4>
+            <p>4- and 5-bedroom Rancho villas for family life with gardens and pools, and 3- and 4-bedroom Aliso townhouses on walkable streets beside the parks.</p>
+          </article>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div>
+          <div class="partner-label">Developed by</div>
+          <div class="nakheel-lockup">NAKHEEL<small>MASTER DEVELOPER</small></div>
+        </div>
+        <div>
+          <div class="loc-label">From Palm Springs</div>
+          <div class="times">
+            <span class="time"><b>20 MIN</b> Bluewaters Island</span>
+            <span class="time"><b>14 MIN</b> Palm Jebel Ali</span>
+            <span class="time"><b>25 MIN</b> Palm Jumeirah</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-wrap" id="location">
+      <div class="location-heading">
+        <div>
+          <div class="location-eyebrow">Location</div>
+          <h2>A distinguished address<br/>near Palm Jebel Ali</h2>
+        </div>
+        <p>Discover Palm Springs’ land parcel near Palm Jebel Ali, with Palm Jumeirah and Dubai’s key destinations within reach.</p>
+      </div>
+      <div class="location-panel">
+        <div class="map-frame">
+          <img src="images/site/map.jpg" alt="Brochure map highlighting the Palm Springs land parcel and Palm Jumeirah, with nearby Dubai roads and landmarks"/>
+          <svg class="land-parcel-highlight" viewBox="0 0 1344 756" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M410 506 L451 498 L470 564 L464 581 L433 588 L411 580 Z"/>
+          </svg>
+          <span class="map-parcel-label">Palm Springs land parcel</span>
+          <button class="map-zoom-trigger" id="mapZoomTrigger" type="button" aria-label="View location map enlarged">
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+                <circle cx="10.5" cy="10.5" r="5.5"/>
+                <path d="m15 15 5 5M10.5 8v5M8 10.5h5"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div class="location-details">
+          <div class="location-feature">
+            <div>
+              <div class="location-parcel">Palm Springs land parcel</div>
+              <div class="location-destination">Palm Jumeirah</div>
+            </div>
+            <div class="location-time">25<span>min</span></div>
+          </div>
+          <div class="location-routes">
+            <div class="location-route"><span>Palm Jebel Ali</span><strong>14 min</strong></div>
+            <div class="location-route"><span>Bluewaters Island</span><strong>20 min</strong></div>
+            <div class="location-route"><span>DWC Airport</span><strong>23 min</strong></div>
+            <div class="location-route"><span>Burj Al Arab</span><strong>30 min</strong></div>
+          </div>
+          <p class="location-note">Drive times shown in the brochure; actual journey times may vary.</p>
+        </div>
+      </div>
+      <div class="map-lightbox" id="mapLightbox" role="dialog" aria-modal="true" aria-label="Enlarged location map" aria-hidden="true">
+        <button class="map-lightbox-close" id="mapLightboxClose" type="button" aria-label="Close enlarged map">×</button>
+        <div class="map-lightbox-content">
+          <img src="images/site/map.jpg" alt="Enlarged map highlighting the Palm Springs land parcel and Palm Jumeirah"/>
+          <svg class="land-parcel-highlight" viewBox="0 0 1344 756" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M410 506 L451 498 L470 564 L464 581 L433 588 L411 580 Z"/>
+          </svg>
+          <span class="map-parcel-label">Palm Springs land parcel</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+
+  <section class="homes" id="residences">
+    <div class="homes-head">
+      <h2>Find your place in the community</h2>
+      <div class="homes-intro">
+        <p>Contemporary villas and townhouses bring distinctive architecture, elegant proportions and thoughtful design into one community.</p>
+      </div>
+    </div>
+    <div class="scroller-wrap">
+      <div class="arrows">
+        <button type="button" id="prevHomes" aria-label="Previous homes">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button type="button" id="nextHomes" aria-label="Next homes">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <div class="scroller" id="scroller">
+        <article class="home-card" data-name="5-Bedroom Rancho Villa" data-keys="rancho villa 5 bedroom five garden pool">
+          <div class="home-visual">
+            <img src="images/site/villa5.jpg" alt="5-bedroom Rancho villa streetscape"/>
+            <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg></span>
+            <button class="heart" type="button" aria-label="Save 5-bedroom villa"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 19s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
+          </div>
+          <h3>Rancho Villa</h3>
+          <div class="type">5 Bedroom</div>
+          <p class="detail">Gardens, courtyards and a private pool</p>
+        </article>
+        <article class="home-card" data-name="4-Bedroom Rancho Villa" data-keys="rancho villa 4 bedroom four">
+          <div class="home-visual">
+            <img src="images/site/villa4.jpg" alt="4-bedroom Rancho villa"/>
+            <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg></span>
+            <button class="heart" type="button" aria-label="Save 4-bedroom villa"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 19s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
+          </div>
+          <h3>Rancho Villa</h3>
+          <div class="type">4 Bedroom</div>
+          <p class="detail">En-suite bedrooms and expansive living</p>
+        </article>
+        <article class="home-card" data-name="5-Bedroom Living" data-keys="living dining interior villa">
+          <div class="home-visual">
+            <img src="images/site/living.jpg" alt="Living and dining room of a 5-bedroom villa"/>
+            <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg></span>
+            <button class="heart" type="button" aria-label="Save villa interior"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 19s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
+          </div>
+          <h3>Villa Interior</h3>
+          <div class="type">Living &amp; Dining</div>
+          <p class="detail">Light-filled rooms opening to the garden</p>
+        </article>
+        <article class="home-card" data-name="4-Plex Aliso Townhouse" data-keys="aliso townhouse 4 plex 3 4 bedroom">
+          <div class="home-visual">
+            <img src="images/site/town4.jpg" alt="4-plex Aliso townhouses"/>
+            <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg></span>
+            <button class="heart" type="button" aria-label="Save 4-plex townhouse"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 19s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
+          </div>
+          <h3>Aliso Townhouse</h3>
+          <div class="type">4-Plex</div>
+          <p class="detail">3- and 4-bedroom homes on walkable streets</p>
+        </article>
+        <article class="home-card" data-name="6-Plex Aliso Townhouse" data-keys="aliso townhouse 6 plex">
+          <div class="home-visual">
+            <img src="images/site/town6.jpg" alt="6-plex Aliso townhouses"/>
+            <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg></span>
+            <button class="heart" type="button" aria-label="Save 6-plex townhouse"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 19s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
+          </div>
+          <h3>Aliso Townhouse</h3>
+          <div class="type">6-Plex</div>
+          <p class="detail">Private gardens a short stroll from the parks</p>
+        </article>
+        <article class="home-card" data-name="Townhouse Living" data-keys="townhouse living dining interior">
+          <div class="home-visual">
+            <img src="images/site/town-living.jpg" alt="Townhouse living and dining room"/>
+            <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.2"/></svg></span>
+            <button class="heart" type="button" aria-label="Save townhouse interior"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.7"><path d="M12 19s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
+          </div>
+          <h3>Townhouse</h3>
+          <div class="type">Living &amp; Dining</div>
+          <p class="detail">Courtyard light and an easy indoor-outdoor plan</p>
+        </article>
+      </div>
+    </div>
+    <p class="empty-note" id="emptyNote">No residences match that search.</p>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div class="foot-brand">PALM SPRINGS</div>
+      <p>Nakheel is one of Dubai’s leading master developers. Its communities include Palm Jumeirah, Dubai Islands and Palm Jebel Ali. Palm Springs is planned so mornings feel lighter, evenings last longer, and the people you love are always near.</p>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#lifestyle">Lifestyle</a>
+        <a href="#residences">Residences</a>
+        <a href="#location">Location</a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <form class="modal-card" id="leadForm">
+      <button class="close-x" type="button" id="closeModal" aria-label="Close">×</button>
+      <h3 id="modalTitle">Register interest</h3>
+      <p class="lead" id="modalLead">Share your details and we’ll be in touch with more information.</p>
+      <div class="field"><input name="name" type="text" required placeholder="Full name" autocomplete="name" aria-label="Full name"/></div>
+      <div class="field"><input name="email" type="email" required placeholder="Email address" autocomplete="email" aria-label="Email address"/></div>
+      <div class="field"><input name="phone" type="tel" required placeholder="Phone number" autocomplete="tel" aria-label="Phone number"/></div>
+      <div class="field"><input name="nationality" type="text" required placeholder="Nationality" autocomplete="off" aria-label="Nationality"/></div>
+      <button class="submit" type="submit">Request details</button>
+      <p class="form-note" id="formNote"></p>
+    </form>
+  </div>
+
+  <script>
+    const navLinks = document.getElementById('navLinks');
+    document.getElementById('menuBtn').addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    const sections = ['home', 'about', 'location', 'lifestyle', 'residences']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+    const links = [...document.querySelectorAll('.nav-links a')];
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        links.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.1 });
+    sections.forEach(section => spy.observe(section));
+
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      document.body.classList.toggle('night');
+    });
+
+    const searchPop = document.getElementById('searchPop');
+    const searchInput = document.getElementById('searchInput');
+    const cards = [...document.querySelectorAll('.home-card')];
+    const emptyNote = document.getElementById('emptyNote');
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      searchPop.classList.toggle('open');
+      if (searchPop.classList.contains('open')) {
+        searchInput.focus();
+        document.getElementById('residences').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      let shown = 0;
+      cards.forEach(card => {
+        const hay = (card.dataset.keys + ' ' + card.dataset.name).toLowerCase();
+        const match = !q || hay.includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) shown += 1;
+      });
+      emptyNote.style.display = shown ? 'none' : 'block';
+    });
+
+    const scroller = document.getElementById('scroller');
+    document.getElementById('nextHomes').addEventListener('click', () => {
+      scroller.scrollBy({ left: 358, behavior: 'smooth' });
+    });
+    document.getElementById('prevHomes').addEventListener('click', () => {
+      scroller.scrollBy({ left: -358, behavior: 'smooth' });
+    });
+
+    document.querySelectorAll('.heart').forEach(btn => {
+      btn.addEventListener('click', event => {
+        event.stopPropagation();
+        btn.classList.toggle('on');
+      });
+    });
+
+    const mapZoomTrigger = document.getElementById('mapZoomTrigger');
+    const mapLightbox = document.getElementById('mapLightbox');
+    const mapLightboxClose = document.getElementById('mapLightboxClose');
+    let mapLightboxTrigger = null;
+    let previousBodyOverflow = '';
+    function openMapLightbox() {
+      mapLightboxTrigger = document.activeElement;
+      previousBodyOverflow = document.body.style.overflow;
+      mapLightbox.classList.add('open');
+      mapLightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      mapLightboxClose.focus();
+    }
+    function closeMapLightbox() {
+      if (!mapLightbox.classList.contains('open')) return;
+      mapLightbox.classList.remove('open');
+      mapLightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = previousBodyOverflow;
+      if (mapLightboxTrigger) mapLightboxTrigger.focus();
+    }
+    mapZoomTrigger.addEventListener('click', openMapLightbox);
+    mapLightboxClose.addEventListener('click', closeMapLightbox);
+    mapLightbox.addEventListener('click', event => {
+      if (event.target === mapLightbox) closeMapLightbox();
+    });
+    mapLightbox.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeMapLightbox();
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        mapLightboxClose.focus();
+      }
+    });
+
+    const modal = document.getElementById('modal');
+    const modalLead = document.getElementById('modalLead');
+    let selectedHome = '';
+    function openModal(home) {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      selectedHome = home || '';
+      if (home) {
+        modalLead.textContent = 'Register your interest in the ' + home + '.';
+      } else {
+        modalLead.textContent = 'Share your details and we’ll be in touch with more information.';
+      }
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
+    document.getElementById('userBtn').addEventListener('click', () => openModal());
+    document.querySelectorAll('[data-enquire]').forEach(btn => btn.addEventListener('click', () => openModal()));
+    document.querySelector('.discover').addEventListener('click', () => {
+      document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+    });
+    cards.forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.name));
+    });
+
+    document.getElementById('leadForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const note = document.getElementById('formNote');
+      const data = new FormData(event.currentTarget);
+      const firstName = data.get('name').trim().split(' ')[0];
+      note.textContent = selectedHome
+        ? 'Thank you, ' + firstName + '. Your enquiry about ' + selectedHome + ' has been noted.'
+        : 'Thank you, ' + firstName + '. Your enquiry has been noted.';
+      event.currentTarget.reset();
+    });
+
+    document.getElementById('heroLeadForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const data = new FormData(form);
+      const firstName = data.get('name').trim().split(' ')[0];
+      document.getElementById('heroLeadNote').textContent =
+        'Thank you, ' + firstName + '. Your enquiry has been noted.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
